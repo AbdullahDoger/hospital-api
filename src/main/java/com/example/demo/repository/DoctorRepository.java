@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor,Long> {
-
+//Miras aldım insert into vs yazmama gerek kalmadı save delete findall yazıyorum
+    //Hedef Doctor tablosu primary key tipi Long
 
 }
