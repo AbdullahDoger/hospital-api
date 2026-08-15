@@ -6,7 +6,10 @@ import jakarta.persistence.*; // Spring Boot'un veritabanı komutlarını tanım
 @Table(name = "doctors")
 public class Doctor {
     @Id //primary key olduğunu belirtiyor
-    @GeneratedValue(strategy = GenerationType.IDENTITY)// ıd otomatik sırayla artar
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)// ıd otomatik sırayla artar
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "doctor_seq")
+    @SequenceGenerator(name = "doctor_seq", sequenceName = "doctor_sequence", allocationSize = 1)
+    //Spring Boot'a "Oracle'a ID numarasını sorma, Oracle'ın içinde doctor_sequence adında bir numaratör (sıramatik) oluştur ve her yeni kayıtta sıradaki sayıyı o numaratörden kendin al" dedik.
     private long id;
 
     @Column(name = "first_name",nullable = false)// sütunun ismini first_name yapar ve boş bırakılamaz yapar(not null)
@@ -23,6 +26,17 @@ public class Doctor {
         return id;
     }
     // SET Metodu: Dışarıdan gelen yeni değeri, kasanın içindeki private 'id' değişkenine yazar.
+
+    public Doctor(){
+
+    }
+
+    public Doctor(String firstName, String lastName, String specialty){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.specialty = specialty;
+    }
+
     public void setId(long id){
         this.id = id;
     }
