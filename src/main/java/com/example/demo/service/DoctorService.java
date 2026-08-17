@@ -33,4 +33,27 @@ public class DoctorService {
         // gettAllDoctors bir metot. Geriye Doctor sınıfından nesnelerin olduğu bir Liste (List) döndürüyor.
         // doctorRepository, miras aldığı findAll() yeteneği sayesinde veritabanındaki tüm doktorları (SELECT * FROM) bizim yerimize bulup listeliyor.
     }
+
+    // GÜNCELLEME İŞLEMİ (PUT)
+    public Doctor updateDoctor(long id, Doctor doctorDetails) {
+        // 1. Önce "Bu ID'ye sahip bir doktor gerçekten var mı?" diye veritabanına soruyoruz.
+        // Yoksa (orElseThrow) programı çökertmek yerine kibarca hata fırlatıyoruz.
+        Doctor existingDoctor = doctorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Güncellenecek doktor bulunamadı! ID: " + id));
+
+        // 2. Doktor bulunduysa, Postman'den gelen YENİ bilgileri (doctorDetails), ESKİ doktorun (existingDoctor) üzerine yazıyoruz.
+        existingDoctor.setFirstName(doctorDetails.getFirstName());
+        existingDoctor.setLastName(doctorDetails.getLastName());
+        existingDoctor.setSpecialty(doctorDetails.getSpecialty());
+
+        // 3. Güncellenmiş haliyle veritabanına geri kaydediyoruz. (JPA ID'nin var olduğunu bildiği için yeni kayıt açmaz, var olanı günceller).
+        return doctorRepository.save(existingDoctor);
+    }
+
+    // SİLME İŞLEMİ (DELETE)
+    public void deleteDoctor(long id) {
+        // Spring Data JPA'nın kendi metodu olan deleteById'yi kullanarak o ID'yi veritabanından siliyoruz.
+        doctorRepository.deleteById(id);
+    }
+
 }

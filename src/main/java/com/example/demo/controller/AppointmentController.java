@@ -29,4 +29,10 @@ public class AppointmentController {
     public List<Appointment> getAllAppointments() {
         return appointmentService.getAllAppointments();
     }
+
+    @DeleteMapping("/{id}")
+    public String deleteAppointment(@PathVariable long id) {
+        appointmentService.deleteAppointment(id);
+        return "Randevu başarıyla iptal edildi. (Silinen Randevu ID: " + id + ")";
+    }
 }

@@ -37,4 +37,24 @@ public class DoctorController {
         // bu metot Geriye Doctor sınıfından nesnelerin olduğu bir Liste (List) döndürüyor.
         return doctorService.gettAllDoctors();
     }
+
+    // @PutMapping: Dışarıdan var olan bir veriyi GÜNCELLEMEK için istek gelirse bu metot çalışır.
+    // "/{id}": Adresin sonuna yazılan sayıyı (örneğin /api/doctors/2) yakalar.
+    @PutMapping("/{id}")
+    public Doctor updateDoctor(@PathVariable long id, @RequestBody Doctor doctorDetails) {
+        // DoctorService katmanındaki updateDoctor metodunu çağırdık.
+        // Hem URL'den yakaladığımız ID'yi, hem de Postman'den gelen yeni bilgileri gönderiyoruz.
+        return doctorService.updateDoctor(id, doctorDetails);
+    }
+
+    // @DeleteMapping: Dışarıdan var olan bir veriyi SİLMEK için istek gelirse bu metot çalışır.
+    // "/{id}": Silinecek doktorun ID'sini adresin sonundan (örneğin /api/doctors/2) yakalar.
+    @DeleteMapping("/{id}")
+    public String deleteDoctor(@PathVariable long id) {
+        // DoctorService katmanındaki deleteDoctor metodunu çağırıp o ID'ye sahip doktoru siliyoruz.
+        doctorService.deleteDoctor(id);
+
+        // Postman ekranında boş bir sayfa yerine güzel bir bilgi mesajı görelim.
+        return "Doktor başarıyla silindi. (Silinen ID: " + id + ")";
+    }
 }

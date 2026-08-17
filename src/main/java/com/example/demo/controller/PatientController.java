@@ -23,4 +23,17 @@ public class PatientController {
     public List<Patient> getAllPatients(){
         return patientService.getAllPatients();
     }
+
+    @PutMapping("/{id}")
+    public Patient updatePatient(@PathVariable long id, @RequestBody Patient patientDetails) {
+        return patientService.updatePatient(id, patientDetails);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deletePatient(@PathVariable long id) {
+        patientService.deletePatient(id);
+        return "Hasta başarıyla silindi. (Silinen ID: " + id + ")";
+    }
+
+
 }

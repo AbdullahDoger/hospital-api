@@ -27,4 +27,8 @@ public class AppointmentService {
     public List<Appointment> getAllAppointments() {
         return appointmentRepository.findAll();
     }
+
+    public void deleteAppointment(long id) {
+        appointmentRepository.deleteById(id);
+    }
 }
