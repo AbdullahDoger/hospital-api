@@ -28,6 +28,9 @@ public class AppointmentService {
     }
 
     public void deleteAppointment(long id) {
+        if (!appointmentRepository.existsById(id)) {
+            throw new RuntimeException("HATA: İptal edilmek istenen randevu bulunamadı! ID: " + id);
+        }
         appointmentRepository.deleteById(id);
     }
 }

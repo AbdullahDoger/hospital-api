@@ -27,7 +27,7 @@ public class DoctorController {
         return doctorService.saveDoctor(doctor);
     }
 
-
+    @GetMapping
     public List<Doctor> getAllDoctors() {
         return doctorService.gettAllDoctors();
     }

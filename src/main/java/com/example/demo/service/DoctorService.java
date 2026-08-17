@@ -43,6 +43,9 @@ public class DoctorService {
 
 
     public void deleteDoctor(long id) {
+        if (!doctorRepository.existsById(id)) {
+            throw new RuntimeException("HATA: Silinmek istenen doktor bulunamadı! ID: " + id);
+        }
         doctorRepository.deleteById(id);
     }
 

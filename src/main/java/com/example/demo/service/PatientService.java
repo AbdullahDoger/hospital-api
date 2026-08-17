@@ -39,6 +39,9 @@ public class PatientService {
 
 
     public void deletePatient(long id) {
+        if (!patientRepository.existsById(id)) {
+            throw new RuntimeException("HATA: Silinmek istenen hasta bulunamadı! ID: " + id);
+        }
         patientRepository.deleteById(id);
     }
 }
