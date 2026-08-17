@@ -24,26 +24,21 @@ public class PatientService {
         return patientRepository.findAll();
     }
 
-    // GÜNCELLEME İŞLEMİ (PUT)
+
     public Patient updatePatient(long id, Patient patientDetails) {
-        // 1. Önce "Bu ID'ye sahip bir hasta var mı?" diye veritabanına soruyoruz.
         Patient existingPatient = patientRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Güncellenecek hasta bulunamadı! ID: " + id));
 
-        // 2. Hasta bulunduysa, Postman'den gelen YENİ bilgileri ESKİ hastanın üzerine yazıyoruz.
-        // DİKKAT: Buradaki get/set isimlerini Patient.java (Entity) sınıfında nasıl yazdıysan öyle kullanmalısın.
         existingPatient.setFirstName(patientDetails.getFirstName());
         existingPatient.setLastName(patientDetails.getLastName());
         existingPatient.setSsNo(patientDetails.getSsNo());
 
 
-        // 3. Güncellenmiş haliyle veritabanına geri kaydediyoruz.
         return patientRepository.save(existingPatient);
     }
 
-    // SİLME İŞLEMİ (DELETE)
+
     public void deletePatient(long id) {
-        // Spring Data JPA'nın metoduyla o ID'ye sahip hastayı siliyoruz.
         patientRepository.deleteById(id);
     }
 }

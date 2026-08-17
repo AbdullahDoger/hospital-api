@@ -17,13 +17,12 @@ public class AppointmentService {
         this.appointmentRepository = appointmentRepository;
     }
 
-    // Yeni randevu kaydetme metodu
+
     public Appointment saveAppointment(Appointment appointment) {
-        // İleride buraya "Doktor o saatte müsait mi?" kontrolünü ekleyeceğiz!
         return appointmentRepository.save(appointment);
     }
 
-    // Tüm randevuları listeleme metodu
+
     public List<Appointment> getAllAppointments() {
         return appointmentRepository.findAll();
     }

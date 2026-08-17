@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/appointments") // Bu veznenin adresi: localhost:8080/api/appointments
+@RequestMapping("/api/appointments")
 public class AppointmentController {
 
     private final AppointmentService appointmentService;
@@ -18,13 +18,13 @@ public class AppointmentController {
         this.appointmentService = appointmentService;
     }
 
-    // POST isteği: Yeni randevu oluşturur
+
     @PostMapping
     public Appointment createAppointment(@RequestBody Appointment appointment) {
         return appointmentService.saveAppointment(appointment);
     }
 
-    // GET isteği: Tüm randevuları listeler
+
     @GetMapping
     public List<Appointment> getAllAppointments() {
         return appointmentService.getAllAppointments();
