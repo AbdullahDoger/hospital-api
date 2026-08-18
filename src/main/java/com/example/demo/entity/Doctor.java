@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "doctors")
 public class Doctor {
-    @Id //primary key olduğunu belirtiyor
+    @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "doctor_seq")
     @SequenceGenerator(name = "doctor_seq", sequenceName = "doctor_sequence", allocationSize = 1)
 
@@ -37,30 +37,37 @@ public class Doctor {
     }
 
     public void setId(long id){
+
         this.id = id;
     }
 
     public String getFirstName() {
+
         return firstName;
     }
 
     public void setFirstName(String firstName) {
+
         this.firstName = firstName;
     }
 
     public String getLastName() {
+
         return lastName;
     }
 
     public void setLastName(String lastName) {
+
         this.lastName = lastName;
     }
 
     public String getSpecialty() {
+
         return specialty;
     }
 
     public void setSpecialty(String specialty) {
+
         this.specialty = specialty;
     }
 }
