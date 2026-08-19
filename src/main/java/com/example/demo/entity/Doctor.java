@@ -1,7 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-//my_Branch1234
+//my_Branch12345
 @Entity
 @Table(name = "doctors")
 public class Doctor {
