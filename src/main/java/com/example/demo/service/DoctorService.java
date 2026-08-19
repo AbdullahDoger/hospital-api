@@ -16,7 +16,7 @@ public class DoctorService {
         this.doctorRepository = doctorRepository;
 
     }
-
+//merhaba tamam
     public Doctor saveDoctor(Doctor doctor){
         return doctorRepository.save(doctor);
 
